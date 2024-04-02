@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTask } from "../redux/actions";
 
@@ -7,6 +7,12 @@ const TaskList = () => {
   const dispatch = useDispatch();
   const handleDeleteTask = (id) => {
     dispatch(deleteTask(id));
+  };
+
+  const checkboxRef = useRef(null);
+
+  const handleChange = () => {
+    checkboxRef.current.checked = true;
   };
   return (
     <ul className="bg-gradient-to-br from-cyan-400 to-blue-700 list-none flex flex-col justify-evenly">
@@ -22,6 +28,7 @@ const TaskList = () => {
           >
             Delete
           </button>
+          <input className="h-5 w-5" type="checkbox" ref={checkboxRef} />;
         </li>
       ))}
     </ul>
